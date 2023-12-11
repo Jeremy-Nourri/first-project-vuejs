@@ -1,10 +1,12 @@
 <script setup>
 
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 
 const newTaskText = ref('');
 
-const emit = defineEmits(['add-task', 'update-task']);
+console.log(newTaskText.value);
+
+const emit = defineEmits(['add-task']);
 
 function emitAddTask() {
     emit('add-task', newTaskText.value);

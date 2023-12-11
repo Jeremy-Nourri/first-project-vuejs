@@ -1,6 +1,6 @@
 <script setup>
 
-import { defineProps } from 'vue';
+import { defineProps, ref, watch } from 'vue';
 
 const props = defineProps({
   task: {
@@ -13,23 +13,45 @@ const props = defineProps({
   }
 })
 
+const isUpdateInputVisible = ref(false);
+
+const updatedText = ref(props.task.text);
+
+const toggleUpdateInput = () => {
+  isUpdateInputVisible.value = !isUpdateInputVisible.value;
+};
+
+const emit = defineEmits(['update-task', 'remove-task',]);
+
+const emitUpdateTask = () => {
+    emit('update-task', updatedText.value);
+    isUpdateInputVisible.value = false;
+};
+
+const emitRemoveTask = () => {
+  emit('remove-task', props.index);
+};
+
+watch(() => props.task, () => {
+  updatedText.value = props.task.text;
+});
+
+
 </script>
 
 <template>
-    <div>
-        <li>
-            <p>
-                {{ props.task.text }}
-            </p>
-            <div>
-            <button @click="$emit('remove-task', props.index)">Remove</button>
-            <button @click="$emit('update-task', props.index)">Update</button>
-            </div>
-        </li>
+  <div>
+    <li>
+      <button @click="emitRemoveTask">Supprimer</button>
 
-    </div>
- 
+      <input v-if="isUpdateInputVisible" v-model.trim="updatedText" />
+      <p v-else>{{ props.task.text }}</p>
+      
+      <button v-if="isUpdateInputVisible" @click="emitUpdateTask">Valider</button>
+      <button v-else @click="toggleUpdateInput">Modifier</button>
+    </li>
+
+  </div>
 </template>
 
-<style>
-</style>
+<style></style>
