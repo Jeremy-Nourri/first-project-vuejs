@@ -47,7 +47,7 @@ button:hover {
 }
 
 /* Style pour le champ de saisie de texte */
-input[type="text"] {
+input {
   display: block;
   width: 100%;
   padding: 10px;
@@ -59,7 +59,7 @@ input[type="text"] {
 }
 
 /* Style pour le champ de saisie de texte au focus */
-input[type="text"]:focus {
+input:focus {
   outline: none;
   border-color: #164863;
   box-shadow: 0 0 5px #164863;

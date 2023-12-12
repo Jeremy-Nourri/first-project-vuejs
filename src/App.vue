@@ -1,12 +1,12 @@
 <script setup>
-import TodoList from './components/TodoList.vue';
+import ContactsList from './components/ContactsList.vue';
 
 
 </script>
 
 <template>
     <main>
-        <TodoList/>
+        <ContactsList />
     </main>
 
 
