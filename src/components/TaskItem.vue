@@ -1,6 +1,6 @@
 <script setup>
 
-import { defineProps, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   task: {
@@ -23,9 +23,16 @@ const toggleUpdateInput = () => {
 
 const emit = defineEmits(['update-task', 'remove-task',]);
 
+// const emitUpdateTask = () => {
+//     emit('update-task', { text: updatedText.value });
+//     isUpdateInputVisible.value = false;
+//     console.log(updatedText.value);
+// };
+
 const emitUpdateTask = () => {
-    emit('update-task', updatedText.value);
+    emit('update-task', { text: updatedText });
     isUpdateInputVisible.value = false;
+    console.log(updatedText.value);
 };
 
 const emitRemoveTask = () => {
@@ -33,7 +40,7 @@ const emitRemoveTask = () => {
 };
 
 watch(() => props.task, () => {
-  updatedText.value = props.task.text;
+   updatedText.value.text = props.task.text;
 });
 
 
@@ -41,11 +48,11 @@ watch(() => props.task, () => {
 
 <template>
   <div>
-    <li>
-      <button @click="emitRemoveTask">Supprimer</button>
-
+    <li class="task">
       <input v-if="isUpdateInputVisible" v-model.trim="updatedText" />
       <p v-else>{{ props.task.text }}</p>
+
+      <button @click="emitRemoveTask">Supprimer</button>
       
       <button v-if="isUpdateInputVisible" @click="emitUpdateTask">Valider</button>
       <button v-else @click="toggleUpdateInput">Modifier</button>
@@ -54,4 +61,17 @@ watch(() => props.task, () => {
   </div>
 </template>
 
-<style></style>
+<style>
+
+.task {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+  margin-top: 0.5rem;
+}
+
+p {
+  margin: 0;
+}
+
+</style>

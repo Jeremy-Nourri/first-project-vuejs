@@ -4,8 +4,6 @@ import { ref } from "vue";
 
 const newTaskText = ref('');
 
-console.log(newTaskText.value);
-
 const emit = defineEmits(['add-task']);
 
 function emitAddTask() {

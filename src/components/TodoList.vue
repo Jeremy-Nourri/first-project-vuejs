@@ -16,8 +16,9 @@ const removeTask = index => {
   tasks.value.splice(index, 1);
 }
 
-const updateTask = (index, updatedText) => {
-  tasks.value.splice(index, 1, {text: updatedText});
+const updateTask = (index, updatedTask) => {
+  tasks.value[index].text = updatedTask;
+  console.log(`task 0 ${tasks.value[0].text}`);
 }
 
 </script>
@@ -28,11 +29,11 @@ const updateTask = (index, updatedText) => {
   <ul>
 
     <TaskItem v-for="(task, index) in tasks"
-    :key="index"
-    :task="task"
-    :index="index"
-    @remove-task="removeTask"
-    @update-task="updateTask"
+      :key="index"
+      :task="task"
+      :index="index"
+      @remove-task="removeTask"
+      @update-task="updateTask"
     />
 
   </ul>
