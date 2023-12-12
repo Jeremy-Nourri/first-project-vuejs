@@ -40,20 +40,16 @@ const emitRemoveContact = () => {
 </script>
 
 <template>
-  <div>
     <li class="task">
       <input v-if="isUpdateInputVisible" v-model="updateNameText" />
       <p v-else>{{ name }}</p>
       <input v-if="isUpdateInputVisible" v-model="updateEmailText" />
       <p v-else>{{ email }}</p>
-
-      <button @click="emitRemoveContact">Supprimer</button>
       
-      <button v-if="isUpdateInputVisible" @click="emitUpdateContact">✔</button>
+      <button class="button__validation" v-if="isUpdateInputVisible" @click="emitUpdateContact">✔</button>
       <button v-else @click="toggleUpdateInput">📝</button>
+      <button @click="emitRemoveContact">❌</button>
     </li>
-
-  </div>
 </template>
 
 <style>
@@ -61,8 +57,15 @@ const emitRemoveContact = () => {
 .task {
   display: flex;
   justify-content: space-around;
-  width: 300px;
-  margin-top: 0.5rem;
+  width: 400px;
+
+  & button {
+    margin-left: 3px;
+  }
+
+  & .button__validation {
+    color: green;
+  }
 }
 
 p {

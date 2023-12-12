@@ -23,10 +23,11 @@ const updateContact = (index, updateNameText, updateEmailText) => {
 </script>
 
 <template>
-    <InputAddUser @add-contact="addContact" />
-  <h3 v-if="contacts.length" >Liste de mes contacts:</h3>
-  <ul>
+  <InputAddUser @add-contact="addContact" />
 
+  <h3 v-if="contacts.length" >Liste de mes contacts:</h3>
+
+  <ul>
     <ContactItem v-for="(contact, index) in contacts"
       :key="index"
       :name="contact.name"
@@ -35,11 +36,12 @@ const updateContact = (index, updateNameText, updateEmailText) => {
       @remove-contact="removeContact"
       @update-contact="updateContact"
     />
-
   </ul>
 
 </template>
 
 <style>
-
+ul {
+  padding: 0;
+}
 </style>

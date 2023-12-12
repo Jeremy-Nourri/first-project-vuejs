@@ -21,13 +21,22 @@ function emitAddContact() {
         <input required type="email" v-model.trim="newEmailText">
         <button @click="emitAddContact">Ajouter un contact</button>
     </div>
-
 </template>
 
 <style>
 
 .container__add-task {
     width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    
+    & button {
+        width: 100%;
+    }
 }
 
 </style>
